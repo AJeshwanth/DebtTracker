@@ -9,12 +9,22 @@ import { Debt, Payment } from './models.js';
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+const allowedOrigins = [
+  'https://debt-tracker-peach-iota.vercel.app'
+];
+
 app.use(cors({
-    origin: 'https://debt-tracker-peach-iota.vercel.app',
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+  origin: allowedOrigins,
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: [
+    'Content-Type',
+    'Authorization',
+    'X-App-Password'
+  ]
 }));
+
 app.use(express.json({ limit: '2mb' }));
 
 cloudinary.config({
