@@ -6,6 +6,13 @@ import multer from 'multer';
 import { v2 as cloudinary } from 'cloudinary';
 import { Debt, Payment } from './models.js';
 
+app.use(cors({
+    origin: 'https://debt-tracker-peach-iota.vercel.app',
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 const app = express();
 const PORT = process.env.PORT || 5000;
 app.use(cors({ origin: process.env.CLIENT_URL?.split(',') || true }));
